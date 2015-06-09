@@ -4,7 +4,7 @@
   "description": "An application for taking attendance at meetups. Part of my Data Driven Web Applications with Angular.js course at Lynda.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/planetoftheweb/angulardata.git"
+    "url": "https://github.com/alexkaufman06/angular_data"
   },
   "author": "Alex Kaufman",
   "devDependencies": {
