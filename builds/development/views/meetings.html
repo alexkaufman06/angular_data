@@ -1,4 +1,14 @@
 <div class="meetings cf">
+  <h1>Add Meeting</h1>
+  <form action="" class="fomrgroup addmeeting cf" name="myform"
+        ng-submit="addMeeting()" novalidate>
+    <div class="inputwrapper">
+      <input type="text" name="meetingname" placeholder="Meeting Name"
+             ng-model="meetingname" ng-required="true">
+    </div>
+    <button type="submit" class="btn" ng-disabled="myform.$invalid">+</button>
+  </form>
+
   <h2>Your Meetings:</h2>
   <div class="meeting" ng-repeat="meeting in meetings">
     <p>{{meeting.name}}</p>
