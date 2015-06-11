@@ -12,4 +12,8 @@ myApp.controller('MeetingsController', function($scope, $firebase) {
       $scope.meetingname='';
     });
   };
+
+  $scope.deleteMeeting = function(key) {
+    meetings.$remove(key);
+  };
 });
