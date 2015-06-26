@@ -1,14 +1,12 @@
 myApp.controller('RegistrationController',
-  function($scope, $firebaseAuth, $location) {
+  function($scope, $firebaseAuth, $location, FIREBASE_URL, Authentication) {
 
-    var data = new Firebase('https://alexangulardata.firebaseio.com/');
+    var data = new Firebase(FIREBASE_URL);
     var auth = $firebaseAuth(data);
 
   $scope.login = function() {
-    auth.$authWithPassword({
-      email: $scope.user.email,
-      password: $scope.user.password
-    }).then(function(user) {
+    Authentication.login($scope.user)
+    .then(function(user) {
       $location.path('/meetings');
     }).catch(function(error) {
       $scope.message = error.message;
