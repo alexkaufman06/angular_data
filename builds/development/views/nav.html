@@ -3,7 +3,9 @@
     <li class="branding"><a ng-href="#/">angularData</a></li>
     <li>
       <a ng-show="currentUser" ng-href="#/meetings">
-        Meetings {{ '(' + howManyMeetings + ')' }}
+        <span ng-show="howManyMeetings">
+          Meetings {{ '(' + howManyMeetings + ')' }}
+        </span>
       </a>
     </li>
     <li><a ng-hide="currentUser" ng-href="#/login">Login</a></li>
