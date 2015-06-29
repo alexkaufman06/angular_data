@@ -40,7 +40,13 @@ myApp.factory('Authentication', function($firebase,
         }; //user info
         firebaseUsers.$set(regUser.uid, userInfo);
       }); //promise
-    } //register
+    }, //register
+    requireAuth: function() {
+      return auth.$requireAuth();
+    }, //require Authentication
+    waitForAuth: function() {
+      return auth.$waitForAuth();
+    } //Wait until user is Authenticated
   };
   return myObject;
 });
