@@ -5,10 +5,19 @@ myApp.controller('MeetingsController',
                          $rootScope.currentUser.$id + '/meetings');
   var meetingsInfo = $firebase(ref);
   var meetingsObj = meetingsInfo.$asObject();
+  var meetingsArray = meetingsInfo.$asArray();
 
   meetingsObj.$loaded().then(function(data) {
     $scope.meetings = data;
   }); //make sure meetings data is loaded
+
+  meetingsArray.$loaded(function(data) {
+    $rootScope.howManyMeetings = meetingsArray.length;
+  });
+
+  meetingsArray.$watch(function(data) {
+    $rootScope.howManyMeetings = meetingsArray.length;
+  });
 
   $scope.addMeeting = function() {
     meetingsInfo.$push({
