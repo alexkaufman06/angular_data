@@ -1,11 +1,17 @@
-myApp.controller('MeetingsController', function($scope, $firebase) {
-  var ref = new Firebase('https://alexangulardata.firebaseio.com/meetings');
+myApp.controller('MeetingsController',
+  function($scope, $rootScope, $firebase, FIREBASE_URL) {
 
-  var meetings = $firebase(ref);
+  var ref = new Firebase(FIREBASE_URL + '/users/' +
+                         $rootScope.currentUser.$id + '/meetings');
+  var meetingsInfo = $firebase(ref);
+  var meetingsObj = meetingsInfo.$asObject();
 
-  $scope.meetings = meetings.$asObject();
+  meetingsObj.$loaded().then(function(data) {
+    $scope.meetings = data;
+  }); //make sure meetings data is loaded
+
   $scope.addMeeting = function() {
-    meetings.$push({
+    meetingsInfo.$push({
       name: $scope.meetingname,
       date: Firebase.ServerValue.TIMESTAMP
     }).then(function() {
@@ -14,6 +20,6 @@ myApp.controller('MeetingsController', function($scope, $firebase) {
   };
 
   $scope.deleteMeeting = function(key) {
-    meetings.$remove(key);
+    meetingsInfo.$remove(key);
   };
 });
