@@ -19,6 +19,14 @@
         <input id="dirdescending" type="radio" name="direction" ng-model="direction" value="reverse">
         <label for=dirdescending>desc</label>
       </div>
+      <div ng-show="currentUser" class="buttons cf">
+        <button ng-hide="recordId" class="btn btn-pick" ng-click="pickRandom()">
+          Pick Random
+        </button>
+        <button ng-show="recordId" class="btn btn-pick" ng-click="recordId=''">
+          Reset
+        </button>
+      </div>
     </div>
     <ul class="userlist cf">
       <li ng-class="check.userState"

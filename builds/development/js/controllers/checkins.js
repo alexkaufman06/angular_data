@@ -29,6 +29,11 @@ myApp.controller('CheckInsController',
     }); //checkinsObj
   }; //addCheckin
 
+  $scope.pickRandom = function() {
+    var random = Math.round(Math.random() * (checkInsList.length - 1));
+    $scope.recordId = checkInsList.$keyAt(random);
+  };
+
   $scope.deleteCheckin = function(id) {
     var record = $firebase(ref);
     record.$remove(id);
