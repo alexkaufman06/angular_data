@@ -26,13 +26,13 @@ myApp.controller('CheckInsController',
     checkinsObj.$push(myData).then(function() {
       $location.path('/checkins/' + $scope.whichuser + '/' +
                      $scope.whichmeeting + '/checkinsList');
-    }); //checkinsObj
-  }; //addCheckin
+    });
+  };
 
   $scope.deleteCheckin = function(id) {
     var record = $firebase(ref);
     record.$remove(id);
-  }; //deleteCheckin
+  };
 
   $scope.pickRandom = function() {
     var random = Math.round(Math.random() * (checkInsList.length - 1));
@@ -68,4 +68,4 @@ myApp.controller('CheckInsController',
     var record = $firebase(refLove);
     record.$remove(award);
   };
-}); //CheckInsController
+});

@@ -11,7 +11,7 @@ myApp.controller('RegistrationController',
     }).catch(function(error) {
       $scope.message = error.message;
     });
-  }; //login
+  };
 
   $scope.register = function() {
     Authentication.register($scope.user)
@@ -21,9 +21,5 @@ myApp.controller('RegistrationController',
       }).catch(function(error) {
         $scope.message = error.message;
       });
-  }; //register
-
-  // $scope.$on('$viewContentLoaded', function() {
-  //   console.log($scope.myform);
-  // });  Practice with $scope
-}); //RegistrationController
+  };
+});
