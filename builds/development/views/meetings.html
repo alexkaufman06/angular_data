@@ -11,7 +11,8 @@
 
   <h2>Your Meetings:</h2>
   <div class="meeting" ng-repeat="(key, meeting) in meetings">
-    <button class="btn btn-delete tooltip" ng-click="deleteMeeting(key)">
+    <button class="btn btn-delete tooltip" ng-click="deleteMeeting(key)"
+            confirmation-needed = "Are you sure you want to delete this meeting?">
       <span>Delete this meeting</span>
     </button>
     <a ng-href="#/checkins/{{currentUser.regUser}}/{{key}}/checkinsList"
