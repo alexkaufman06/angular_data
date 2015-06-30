@@ -29,14 +29,43 @@ myApp.controller('CheckInsController',
     }); //checkinsObj
   }; //addCheckin
 
-  $scope.pickRandom = function() {
-    var random = Math.round(Math.random() * (checkInsList.length - 1));
-    $scope.recordId = checkInsList.$keyAt(random);
-  };
-
   $scope.deleteCheckin = function(id) {
     var record = $firebase(ref);
     record.$remove(id);
   }; //deleteCheckin
 
+  $scope.pickRandom = function() {
+    var random = Math.round(Math.random() * (checkInsList.length - 1));
+    $scope.recordId = checkInsList.$keyAt(random);
+  };
+
+  $scope.showLove = function(myItem) {
+    myItem.show = !myItem.show;
+
+    if(myItem.userState == 'expanded') {
+      myItem.userState = '';
+    } else {
+      myItem.userState = 'expanded';
+    }
+  };
+
+  $scope.giveLove = function(myItem, myGift) {
+    var refLove = new Firebase(FIREBASE_URL + '/users/' + $scope.whichuser +
+                               '/meetings/' + $scope.whichmeeting + '/checkins/' +
+                               myItem.$id + '/awards');
+    var checkinsObj = $firebase(refLove);
+    var myData = {
+      name: myGift,
+      date: Firebase.ServerValue.TIMESTAMP
+    };
+    checkinsObj.$push(myData);
+  };
+
+  $scope.deleteLove = function(checkinId, award) {
+    var refLove = new Firebase(FIREBASE_URL + '/users/' + $scope.whichuser +
+                               '/meetings/' + $scope.whichmeeting + '/checkins/' +
+                               checkinId + '/awards');
+    var record = $firebase(refLove);
+    record.$remove(award);
+  };
 }); //CheckInsController
