@@ -15,6 +15,15 @@ myApp.controller('CheckInsController',
   var checkInsList = $firebase(ref).$asArray();
   $scope.checkins = checkInsList;
 
+  var meetingsRef = new Firebase(FIREBASE_URL + '/users/' + $scope.whichuser +
+                                 '/meetings/' + $scope.whichmeeting);
+  var meetingInfo = $firebase(meetingsRef);
+  var meetingObj = meetingInfo.$asObject();
+
+  meetingObj.$loaded().then(function(data) {
+    $scope.meeting = data;
+  });
+
   $scope.addCheckin = function() {
     var checkinsObj = $firebase(ref);
     var myData = {
